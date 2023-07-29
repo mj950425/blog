@@ -1,0 +1,16 @@
+version: '2'
+services:
+  mysql-master:
+    image: mysql
+    platform: linux/arm64/v8
+    container_name: mysql-master
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: "blog-api-user"
+      MYSQL_PASSWORD: "minjoon"
+      MYSQL_DATABASE: "blog"
+      LANG: C.UTF-8
+      TZ: Asia/Seoul
+    ports:
+      - 3316:3306

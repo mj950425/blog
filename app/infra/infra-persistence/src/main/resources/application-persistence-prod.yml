@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: ${aws.secretsmanager:mysql/mj-blog:url}
+    username: ${aws.secretsmanager:mysql/mj-blog:username}
+    password: ${aws.secretsmanager:mysql/mj-blog:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  flyway:
+    schemas: blog
+    enabled: false
+    baseline-on-migrate: false
+    baseline-version: 0
+    encoding: UTF-8
+    locations: [ "classpath:db/migration" ]

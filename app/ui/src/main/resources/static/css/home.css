@@ -1,0 +1,52 @@
+.write-btn {
+    position: fixed;      /* 고정 위치 */
+    top: 20px;            /* 화면 상단에서 20px 떨어진 위치 */
+    right: 20px;          /* 화면 우측에서 20px 떨어진 위치 */
+    padding: 10px 20px;   /* 패딩 추가 */
+    transition: background-color 0.3s, transform 0.3s; /* 애니메이션 효과 */
+}
+
+.write-btn:hover {
+    background-color: #007bff;
+    transform: translateX(-30%) scale(1.05);
+}
+
+.custom-list-group {
+    margin-bottom: 20px;
+}
+
+.custom-list-group .list-group-item {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    margin-top: 20px; /* 여백 추가 */
+}
+
+.pagination a.page-link {
+    color: black; /* 기본 링크 색상 변경 */
+    border: none; /* 테두리 제거 */
+}
+
+.pagination a.page-link:hover {
+    background-color: #f8f9fa; /* 마우스 오버 배경 색상 */
+}
+
+.pagination li.page-item.active a.page-link {
+    background-color: #007bff; /* 선택된 페이지 배경 색상 */
+    color: white; /* 선택된 페이지 텍스트 색상 */
+}
+
+.pagination li.page-item.disabled a.page-link {
+    cursor: not-allowed; /* 비활성화 상태 커서 스타일 */
+}
+
+.sidebar-image {
+    width: 300px;     // 너비를 300px로 설정
+height: 300px;    // 높이도 300px로 설정하여 정사각형 형태를 만듭니다.
+object-fit: cover;  // 이미지의 비율을 유지하면서 정사각형 안에 꽉 차게 표시합니다.
+}

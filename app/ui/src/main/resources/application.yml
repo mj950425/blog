@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    group:
+      local: "local, persistence-local, client-local"
+    include:
+      - persistence
+      - client
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          no-cache: true
+          no-store: true
+        period: 0

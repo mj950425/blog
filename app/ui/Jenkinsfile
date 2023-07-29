@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("Gradle Build") {
+            steps {
+                sh "bash gradlew clean :api:bootJar"
+            }
+        }
+
+        stage('Zip') {
+            steps {
+                sh 'zip -r blog.zip .'
+            }
+        }
+
+        stage('Upload to S3') {
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'CodeDeploy']]) {
+                    sh 'aws s3 cp blog.zip s3://minjoon-blog-source/blog.zip'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''#!/bin/bash
+                aws deploy create-deployment \
+                    --application-name blog \
+                    --deployment-config-name CodeDeployDefault.OneAtATime \
+                    --deployment-group-name blog-deploy-group \
+                    --s3-location bucket=minjoon-blog-source,bundleType=zip,key=blog.zip \
+                    --region ap-northeast-2
+                '''
+            }
+        }
+    }
+}
