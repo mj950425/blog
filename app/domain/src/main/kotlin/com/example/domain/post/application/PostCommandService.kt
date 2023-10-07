@@ -1,17 +1,11 @@
 package com.example.domain.post.application
 
 import com.example.domain.post.command.CreatePostCommand
-import com.example.domain.post.command.UploadImageCommand
-import com.example.domain.post.domain.ImageUploader
-import com.example.domain.post.domain.Post
+import com.example.domain.post.command.PostUpdateCommand
 import com.example.domain.post.domain.PostRepository
 import com.example.domain.post.toPost
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.net.URLEncoder
-import java.nio.file.Files
-import java.nio.file.Paths
-import java.util.UUID
 
 @Service
 @Transactional
@@ -23,7 +17,9 @@ class PostCommandService(
         return postRepository.save(createPostCommand.toPost(createdBy))
     }
 
-    fun updatePost(post: Post): Long {
+    fun updatePost(postUpdateCommand: PostUpdateCommand): Long {
+        val post = postRepository.findById(postUpdateCommand.postId)
+        post.update(postUpdateCommand)
         return postRepository.update(post)
     }
 
